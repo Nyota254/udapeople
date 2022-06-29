@@ -45,10 +45,12 @@ jobs:
       - checkout
       - restore_cache:
           keys: [frontend-test]
-      - command: |
-          cd frontend
-          npm install
-          npm run test
+      - run:
+          name: build frontend
+          command: |
+            cd frontend
+            npm install
+            npm run test
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-test
@@ -61,10 +63,12 @@ jobs:
       - checkout
       - restore_cache:
           keys: [backend-test]
-      - command: |
-          cd backend
-          npm install
-          npm run test
+      - run:
+          name: test-backend
+          command: |
+            cd backend
+            npm install
+            npm run test
       - save_cache:
           paths: [backend/node_modules]
           key: backend-test
