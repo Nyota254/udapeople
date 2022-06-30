@@ -13,8 +13,8 @@
 - name: install python
   become: true
   become_method: sudo
-  apt:
-    name: python
+  shell: |
+        sudo apt install python3
 
 - name: install dependancies nodejs and npm
   become: true
