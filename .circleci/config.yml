@@ -12,7 +12,7 @@ jobs:
       - run:
           command: npm run deploy
       - slack/notify:
-          channel: T03BV02D0EQ/D03EY7ZRN2H
+          channel: $SLACK_DEFAULT_CHANNEL
           event: fail
           template: basic_fail_1
   build-frontend:
@@ -141,6 +141,6 @@ workflows:
       - scan-backend:
           requires: [build-backend]
       - deploy:
-          context: $SLACK_ACCESS_TOKEN
+          context: slack-secrets
 
       
