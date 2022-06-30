@@ -1,0 +1,30 @@
+---
+- name: update apt packages
+  become: true
+  apt:
+    update_cache: yes
+
+- name: upgrade apt packages
+  become: true
+  apt:
+    name: "*"
+    state: latest
+
+- name: install python
+  become: true
+  become_method: sudo
+    apt:
+      name: python
+
+- name: install dependancies nodejs and npm
+  become: true
+  apt:
+    pkg:
+    - nodejs
+    - npm
+
+- name: install pm2
+  become: true
+  npm:
+    name: pm2
+    global: yes
