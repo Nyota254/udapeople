@@ -1,6 +1,22 @@
 version: 2.1
 
+orbs:
+  node: 'circleci/node:4.1'
+  slack: circleci/slack@4.1
+
 jobs:
+  deploy:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run deploy
+      - slack/notify:
+          channel: T03BV02D0EQ/D03EY7ZRN2H
+          event: fail
+          template: basic_fail_1
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -31,7 +47,7 @@ jobs:
           name: build backend
           command: |
             cd backend
-            npm install
+            npm run
             npm run build
       - save_cache:
           paths: [backend/node_modules]
@@ -126,4 +142,7 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
+      - deploy:
+          context: slack-secrets
+
       
