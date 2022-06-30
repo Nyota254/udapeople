@@ -1,20 +1,6 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@4.1
-
 jobs:
-  deploy:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - run:
-          command: npm run deploy
-      - slack/notify:
-          channel: $SLACK_DEFAULT_CHANNEL
-          event: fail
-          template: basic_fail_1
   build-frontend:
     docker:
       - image: circleci/node:13.8.0
@@ -140,7 +126,5 @@ workflows:
           requires: [build-frontend]
       - scan-backend:
           requires: [build-backend]
-      - deploy:
-          context: slack-secrets
 
       
