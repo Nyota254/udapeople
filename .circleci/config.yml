@@ -161,6 +161,8 @@ jobs:
               --query "Reservations[*].Instances[*].PublicIpAddress" \
               --output text)
             echo ${BACK_END_IP} > .circleci/ansible/inventory.txt
+            echo ${BACK_END_IP}
+            echo "hello"
 
       - persist_to_workspace:
           root: ~/
