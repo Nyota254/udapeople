@@ -276,6 +276,7 @@ jobs:
           command: |
             apk add --update openssh-client git
             apk add --update ansible
+            apk add --update aws-cli
             apk add --update tar
             apk add --update gzip
             apk add --update nodejs npm
@@ -286,7 +287,7 @@ jobs:
             npm i
             npm run build
             cd ..
-            tar -C backend -czvf artifact.tar.gz
+            tar -C backend -czvf artifact.tar.gz .
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
