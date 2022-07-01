@@ -1,0 +1,17 @@
+---
+- name: extract zipped artifact
+  become: true
+  shell: |
+    tar -xvzf artifact.tar.gz
+
+- name: install dependancies
+  become: true
+  shell: |
+    npm install
+
+- name: start app
+  become: true
+  shell: |
+    pm2 stop default
+    pm2 start
+    npm start
