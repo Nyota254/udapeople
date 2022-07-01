@@ -208,7 +208,7 @@ jobs:
       - restore_cache:
           name: restore the backend cache
           keys:
-            backend-scan
+            - backend-scan
       - run:
           name: Run migrations
           command: |
