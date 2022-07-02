@@ -3,7 +3,7 @@
   become: true
   copy:
     src: artifact.tar.gz
-    dest: /artifact.tar.gz
+    dest: ~/
     backup: yes
 
 - name: extract zipped artifact
@@ -20,5 +20,4 @@
   become: true
   shell: |
     pm2 stop default
-    pm2 start
-    npm start
+    pm2 start npm -- start
