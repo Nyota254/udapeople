@@ -3,7 +3,7 @@
   become: true
   copy:
     src: artifact.tar.gz
-    dest: ~/
+    dest: ~/artifact.tar.gz
     backup: yes
 
 - name: extract zipped artifact
