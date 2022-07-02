@@ -1,5 +1,6 @@
 ---
 - name: "copy artifact into the server"
+  become: true
   copy:
     src: artifact.tar.gz
     dest: /artifact.tar.gz
