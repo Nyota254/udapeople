@@ -1,4 +1,10 @@
 ---
+- name: "copy artifact into the server"
+  copy:
+    src: artifact.tar.gz
+    dest: /artifact.tar.gz
+    backup: yes
+
 - name: extract zipped artifact
   become: true
   shell: |
