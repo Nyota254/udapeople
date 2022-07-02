@@ -2,7 +2,7 @@
 - name: extract zipped artifact
   become: true
   shell: |
-    tar -xvzf artifact.tar.gz
+    tar -xvzf artifact.tar.gz .
 
 - name: install dependancies
   become: true
