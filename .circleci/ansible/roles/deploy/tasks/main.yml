@@ -1,21 +1,14 @@
 ---
-- name: create ~/backend directiory
-  become: true
-  shell:  mkdir ~/backend
-
 - name: "copy artifact into the server"
   become: true
   copy:
-    src: artifact.tar.gz
-    dest: ~/backend
-    backup: yes
+    src: files/artifact.tar.gz
+    dest: ~/
 
 - name: extract zipped artifact and install dependancies
   become: true
   shell: |
-    cd backend
     tar -xvzf artifact.tar.gz
-    ls artifact
     npm install
 
 
