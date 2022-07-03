@@ -2,14 +2,13 @@
 - name: "copy artifact into the server"
   become: true
   copy:
-    src: artifact.tar.gz
+    src: files/artifact.tar.gz
     dest: ~/
 
 - name: extract zipped artifact and install dependancies
   become: true
   shell: |
     tar -xvzf artifact.tar.gz
-    npm install
 
 
 - name: start app
