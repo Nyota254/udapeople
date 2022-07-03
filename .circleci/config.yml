@@ -323,7 +323,7 @@ jobs:
               --filters "Name=tag:project,Values=udapeople" \
               --query "Reservations[*].Instances[*].PublicIpAddress" \
               --output text)
-            export API_URL="http://${BACKEND_IP}:3030"
+            export API_URL="http://${BACKEND_IP}"
       - run:
           name: Backend smoke test.
           command: |
