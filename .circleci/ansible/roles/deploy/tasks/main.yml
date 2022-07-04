@@ -16,10 +16,10 @@
     sudo npm install ~/
     sudo pm2 stop default ~/
     sudo pm2 start npm -- start ~/
-    
+
   environment:
     - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"  
-    - TYPEORM_ENTITIES: "{{ lookup('env', 'TYPEORM_ENTITIES')}}"
+    - TYPEORM_ENTITIES: /home/ubuntu/src/modules/domain/**/*.entity.js
     - TYPEORM_HOST: "{{ lookup('env', 'TYPEORM_HOST')}}"
     - TYPEORM_PORT: 5432
     - TYPEORM_USERNAME: "{{ lookup('env', 'TYPEORM_USERNAME')}}"
