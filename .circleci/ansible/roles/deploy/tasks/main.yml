@@ -9,7 +9,9 @@
   become: true
   shell: |
     tar -xvzf ~/artifact.tar.gz
+    npm install 
     pm2 stop default 
+    
 
 - name: start app
   become: true
