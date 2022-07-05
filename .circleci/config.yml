@@ -412,6 +412,10 @@ jobs:
       #       apk add --update nodejs npm
       #       apk add --update curl
       - run:
+          name: Install tar utility
+          command: |
+            yum install -y tar gzip
+      - run:
           name: Get old stack workflow id
           command: |
             export OLD_WORKFLOW_ID=$(aws cloudformation \
