@@ -11,11 +11,6 @@
     tar -xvzf ~/artifact.tar.gz
     npm install 
     pm2 stop default 
-    
-
-- name: start app
-  become: true
-  shell: |
     pm2 start npm -- start
   environment:
     - TYPEORM_CONNECTION: "{{ lookup('env', 'TYPEORM_CONNECTION')}}"  
@@ -27,4 +22,10 @@
     - TYPEORM_DATABASE: "{{ lookup('env', 'TYPEORM_DATABASE')}}"
     - TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
     - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
+    
+
+# - name: start app
+#   become: true
+#   shell: |
+    
     
