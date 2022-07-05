@@ -16,17 +16,18 @@ commands:
             aws s3 rm "s3://udapeople-<<parameters.workflow-id>>" --recursive 
             aws cloudformation delete-stack \
               --stack-name "udapeople-frontend-<<parameters.workflow-id>>" 
+
   revert-migrations:
     description: Revert the last migration
     parameters:
-      workflow_id:
+      workflow-id:
         type: string      
     steps:
       - run:
           name: Revert migrations
           when: on_fail
           command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/AHnuPX5FsxMLm5Wh7NaEmV/migration_<< parameters.workflow_id >>)
+            SUCCESS=$(curl --insecure  https://kvdb.io/AHnuPX5FsxMLm5Wh7NaEmV/migration_<< parameters.workflow-id >>)
             # Logic for reverting the database state
             if (( $SUCCESS == 1 ));
             then
