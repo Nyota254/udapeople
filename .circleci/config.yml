@@ -16,6 +16,24 @@ commands:
             aws s3 rm "s3://udapeople-<<parameters.workflow-id>>" --recursive 
             aws cloudformation delete-stack \
               --stack-name "udapeople-frontend-<<parameters.workflow-id>>" 
+  revert-migrations:
+    description: Revert the last migration
+    parameters:
+      workflow_id:
+        type: string      
+    steps:
+      - run:
+          name: Revert migrations
+          when: on_fail
+          command: |
+            SUCCESS=$(curl --insecure  https://kvdb.io/AHnuPX5FsxMLm5Wh7NaEmV/migration_<< parameters.workflow_id >>)
+            # Logic for reverting the database state
+            if (( $SUCCESS == 1 ));
+            then
+              cd ~/project/backend
+              npm install
+              npm run migration:revert
+            fi  
 
 jobs:
   build-frontend:
@@ -340,12 +358,14 @@ jobs:
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
             then
-              return 0
+              return 1
             else
               return 1
             fi
       - destroy-environment:
           workflow-id : ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
 
 workflows:
   default:
