@@ -409,12 +409,6 @@ jobs:
             yum install -y tar gzip
       - attach_workspace:
           at: ~/
-      # - run:
-      #     name: Install dependencies
-      #     command: |
-      #       apk add --update aws-cli
-      #       apk add --update nodejs npm
-      #       apk add --update curl
       - run:
           name: Get old stack workflow id
           command: |
@@ -432,10 +426,7 @@ jobs:
               aws cloudformation delete-stack --stack-name "udapeople-backend-${OLD_WORKFLOW_ID}"
               aws cloudformation delete-stack --stack-name "udapeople-frontend-${OLD_WORKFLOW_ID}"
             fi        
-      # - destroy-environment:
-      #     workflow-id : ${CIRCLE_WORKFLOW_ID:0:7}
-      # - revert-migrations:
-      #     workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
+
 workflows:
   default:
     jobs:
