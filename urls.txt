@@ -1,2 +1,2 @@
 [URL01] https://github.com/Nyota254/cdond-c3-projectstarter
-[URL02] url for s3 bucket here
+[URL02] http://udapeople-bb61609.s3-website-us-east-1.amazonaws.com/#/employees
